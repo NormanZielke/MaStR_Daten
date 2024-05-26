@@ -1,5 +1,14 @@
 import pandas as pd
 import numpy as np
+from functions import filter_by_reg
+
+"""
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+
+pd.reset_option('display.max_rows')
+pd.reset_option('display.max_columns')
+"""
 
 """
 INPUT
@@ -19,14 +28,10 @@ gemeindeschluessel = {
     "Kiel": "01002000",
     "Zwickau": "14524330",
 }
-
-"""
 import pickle
-
 # dict gemeindeschluessel save as file
-with open(r"functions\gemeindeschluessel.pkl", "wb") as datei:
+with open("gemeindeschluessel.pkl", "wb") as datei:
     pickle.dump(gemeindeschluessel, datei)
-"""
 
 # 2
 
@@ -42,8 +47,15 @@ gsgk = pd.read_csv("csv/bnetza_mastr_gsgk_raw.csv",
 # --------------------------------------------------------------------------------------------------------------------->
 # filter raw data by Municipalities
 
+df_comb = filter_by_reg(combustion)
+df_biomass = filter_by_reg(biomass)
+df_gsgk = filter_by_reg(gsgk)
 
-regions = gemeindeschluessel.keys()
+# --------------------------------------------------------------------------------------------------------------------->
+#
 
+capacities_comb = df_comb.groupby(["Gemeinde","Technologie","Hauptbrennstoff"]).Bruttoleistung.sum()
 
+capacities_biomass = df_biomass.groupby(["Gemeinde","Technologie","Hauptbrennstoff"]).Bruttoleistung.sum()
 
+df_gsgk.loc[:,["Gemeinde","Technologie","Bruttoleistung"]]
