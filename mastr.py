@@ -45,7 +45,6 @@ gsgk = pd.read_csv("csv/bnetza_mastr_gsgk_raw.csv",
 
 # --------------------------------------------------------------------------------------------------------------------->
 # filter raw data by Municipalities
-
 regions = gemeindeschluessel.keys()
 
 df_comb = filter_by_reg(combustion, regions)
@@ -53,8 +52,11 @@ df_biomass = filter_by_reg(biomass, regions)
 df_gsgk = filter_by_reg(gsgk, regions) # --> only 2 power plants
 
 # --------------------------------------------------------------------------------------------------------------------->
-# summarize data by technologies with their fueltype
+# filter the data set for systems that are still in operation
+df_comb = df_comb.loc[df_comb["EinheitBetriebsstatus"] == "In Betrieb"]
+df_biomass = df_biomass.loc[df_biomass["EinheitBetriebsstatus"] == "In Betrieb"]
 
+# summarize data by technologies with their fueltype
 capacities_comb = df_comb.groupby(["Gemeinde", "Technologie", "Hauptbrennstoff"]).Bruttoleistung.sum()
 capacities_biomass = df_biomass.groupby(["Gemeinde", "Technologie", "Hauptbrennstoff"]).Bruttoleistung.sum()
 
