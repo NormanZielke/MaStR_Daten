@@ -63,29 +63,29 @@ capacities_biomass = df_biomass.groupby(["Gemeinde", "Technologie", "Hauptbrenns
 # filter dataframe "combustion" to create dataframe for every region
 
 # combustion
-df_comb_Strausberg = combustion.loc[combustion.Gemeinde == "Strausberg"]
-df_comb_Erkner = combustion.loc[combustion.Gemeinde == "Erkner"]
-df_comb_Ruedersdorf = combustion.loc[combustion.Gemeinde == "Rüdersdorf bei Berlin"]
-df_comb_GruenH = combustion.loc[combustion.Gemeinde == "Grünheide (Mark)"]
-df_comb_Bocholt = combustion.loc[combustion.Gemeinde == "Bocholt"]
-df_comb_Zwickau = combustion.loc[combustion.Gemeinde == "Zwickau"]
-df_comb_Ingolstadt = combustion.loc[combustion.Gemeinde == "Ingolstadt"]
-df_comb_Kassel = combustion.loc[combustion.Gemeinde == "Kassel"]
-df_comb_Kiel = combustion.loc[combustion.Gemeinde == "Kiel"]
+df_comb_Strausberg = df_comb.loc[df_comb.Gemeinde == "Strausberg"]
+df_comb_Erkner = df_comb.loc[df_comb.Gemeinde == "Erkner"]
+df_comb_Ruedersdorf = df_comb.loc[df_comb.Gemeinde == "Rüdersdorf bei Berlin"]
+df_comb_GruenH = df_comb.loc[df_comb.Gemeinde == "Grünheide (Mark)"]
+df_comb_Bocholt = df_comb.loc[df_comb.Gemeinde == "Bocholt"]
+df_comb_Zwickau = df_comb.loc[df_comb.Gemeinde == "Zwickau"]
+df_comb_Ingolstadt = df_comb.loc[df_comb.Gemeinde == "Ingolstadt"]
+df_comb_Kassel = df_comb.loc[df_comb.Gemeinde == "Kassel"]
+df_comb_Kiel = df_comb.loc[df_comb.Gemeinde == "Kiel"]
 
 # filter dataframe "biomass" to create dataframe for every region
 
 # biomass
 
-df_biomass_Strausberg = biomass.loc[biomass.Gemeinde == "Strausberg"]
-df_biomass_Erkner = biomass.loc[biomass.Gemeinde == "Erkner"]
-df_biomass_Ruedersdorf = biomass.loc[biomass.Gemeinde == "Rüdersdorf bei Berlin"]
-df_biomass_GruenH = biomass.loc[biomass.Gemeinde == "Grünheide (Mark)"]
-df_biomass_Bocholt = biomass.loc[biomass.Gemeinde == "Bocholt"]
-df_biomass_Zwickau = biomass.loc[biomass.Gemeinde == "Zwickau"]
-df_biomass_Ingolstadt = biomass.loc[biomass.Gemeinde == "Ingolstadt"]
-df_biomass_Kassel = biomass.loc[biomass.Gemeinde == "Kassel"]
-df_biomass_Kiel = biomass.loc[biomass.Gemeinde == "Kiel"]
+df_biomass_Strausberg = df_biomass.loc[df_biomass.Gemeinde == "Strausberg"]
+df_biomass_Erkner = df_biomass.loc[df_biomass.Gemeinde == "Erkner"]
+df_biomass_Ruedersdorf = df_biomass.loc[df_biomass.Gemeinde == "Rüdersdorf bei Berlin"]
+df_biomass_GruenH = df_biomass.loc[df_biomass.Gemeinde == "Grünheide (Mark)"]
+df_biomass_Bocholt = df_biomass.loc[df_biomass.Gemeinde == "Bocholt"]
+df_biomass_Zwickau = df_biomass.loc[df_biomass.Gemeinde == "Zwickau"]
+df_biomass_Ingolstadt = df_biomass.loc[df_biomass.Gemeinde == "Ingolstadt"]
+df_biomass_Kassel = df_biomass.loc[df_biomass.Gemeinde == "Kassel"]
+df_biomass_Kiel = df_biomass.loc[df_biomass.Gemeinde == "Kiel"]
 
 # filter dataframes of regions by technologie with their capacities
 
