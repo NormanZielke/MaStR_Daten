@@ -1,8 +1,6 @@
 import pandas as pd
 import pickle
 
-# import dictionary for ags_id's
-
 def filter_by_reg(df,regions):
     """
     :param df: pandas dataframe
@@ -26,3 +24,16 @@ def topologie(df):
     capacities = pd.merge(capacities_b, capacities_t)
     capacities.rename(columns={"Bruttoleistung": "Bruttoleistung [kW]", "sum": "Thermische Nutzleistung [kW]", "count": "Anzahl"}, inplace=True)
     return capacities
+
+# Funktion zur Berechnung des Stilllegungsdatums
+def berechne_stilllegung(row,betriebsdauer):
+    technologie = row['Technologie']
+    inbetriebnahmedatum = pd.to_datetime(row['Inbetriebnahmedatum'])
+
+    if technologie in betriebsdauer:
+        # Berechnung der Stilllegung
+        jahre = betriebsdauer[technologie]
+        stilllegungsdatum = inbetriebnahmedatum + pd.DateOffset(years=jahre)
+        return stilllegungsdatum
+    else:
+        return None  # falls die Technologie nicht definiert ist
