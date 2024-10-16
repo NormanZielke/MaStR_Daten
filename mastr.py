@@ -141,3 +141,4 @@ with pd.ExcelWriter("360_SLE_Topologie_biomass.xlsx") as writer:
 # --------------------------------------------------------------------------------------------------------------------->
 # analyse technolgie portfolio
 df_comb_Kiel.to_csv("regions_csv/kiel_combustion.csv")
+df_comb_Ruedersdorf.to_csv("regions_csv/Ruedersdorf_combustion.csv")

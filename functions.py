@@ -25,6 +25,12 @@ def topologie(df):
     capacities.rename(columns={"Bruttoleistung": "Bruttoleistung [kW]", "sum": "Thermische Nutzleistung [kW]", "count": "Anzahl"}, inplace=True)
     return capacities
 
+def select_columns(df):
+    df = df.loc[:,["NameKraftwerk","NameStromerzeugungseinheit","ThermischeNutzleistung",
+                   "ElektrischeKwkLeistung","Hauptbrennstoff","Technologie","Einspeisungsart",
+                   "Strasse","Laengengrad","Breitengrad","Inbetriebnahmedatum"]]
+    return df
+
 # Funktion zur Berechnung des Stilllegungsdatums
 def berechne_stilllegung(row,betriebsdauer):
     technologie = row['Technologie']
@@ -37,3 +43,18 @@ def berechne_stilllegung(row,betriebsdauer):
         return stilllegungsdatum
     else:
         return None  # falls die Technologie nicht definiert ist
+
+# Funktion für Ausgabe von Zeilen mit Kraftwerken, die noch nach cutoff_date in Betrieb sind
+def kraftwerke_nach_cutoff(df,cutoff_date,betriebsdauer):
+    df['Stilllegung'] = df.apply(berechne_stilllegung, axis=1, betriebsdauer=betriebsdauer)
+    df_nach_cutoff =df[df['Stilllegung'] > cutoff_date]
+    return df_nach_cutoff
+
+# Funktion für Ausgabe von Zeilen mit Kraftwerken, die bis cutoff_date stillgelegt wurden
+def kraftwerke_still(df1,df2):
+    df_expired = pd.merge(df1, df2,
+                          how="outer", indicator=True).query('_merge == "left_only" ').drop(columns=['_merge'])
+    return df_expired
+
+
+
