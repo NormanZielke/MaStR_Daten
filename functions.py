@@ -22,13 +22,16 @@ def topologie(df):
     capacities_t = df.groupby(["Technologie", "Hauptbrennstoff"]).ThermischeNutzleistung.agg(["sum", "count"]).reset_index()
     capacities_b = df.groupby(["Technologie", "Hauptbrennstoff"]).Bruttoleistung.sum().reset_index()
     capacities = pd.merge(capacities_b, capacities_t)
-    capacities.rename(columns={"Bruttoleistung": "Bruttoleistung [kW]", "sum": "Thermische Nutzleistung [kW]", "count": "Anzahl"}, inplace=True)
+    capacities.rename(columns={"Bruttoleistung": "Bruttoleistung [kW]",
+                               "sum": "Thermische Nutzleistung [kW]", "count": "Anzahl"}, inplace=True)
     return capacities
 
 def select_columns(df):
-    df = df.loc[:,["NameKraftwerk","NameStromerzeugungseinheit","ThermischeNutzleistung",
-                   "ElektrischeKwkLeistung","Hauptbrennstoff","Technologie","Einspeisungsart",
-                   "Strasse","Laengengrad","Breitengrad","Inbetriebnahmedatum"]]
+    df = df.loc[:,["NameKraftwerk","NameStromerzeugungseinheit","Bruttoleistung_extended",
+                   "ThermischeNutzleistung","ElektrischeKwkLeistung","Hauptbrennstoff",
+                   "Technologie","Einspeisungsart","Strasse","Hausnummer","Laengengrad",
+                   "Breitengrad","Inbetriebnahmedatum"]]
+    df = df.sort_values(by="ThermischeNutzleistung", ascending=False).reset_index(drop=True)
     return df
 
 # Funktion zur Berechnung des Stilllegungsdatums
