@@ -29,7 +29,7 @@ def topologie(df):
 def select_columns(df):
     df = df.loc[:,["NameKraftwerk","NameStromerzeugungseinheit","Bruttoleistung_extended",
                    "ThermischeNutzleistung","ElektrischeKwkLeistung","Hauptbrennstoff",
-                   "Technologie","Einspeisungsart","Strasse","Hausnummer","Laengengrad",
+                   "Technologie","Strasse","Hausnummer","Laengengrad",
                    "Breitengrad","Inbetriebnahmedatum"]]
     df = df.sort_values(by="ThermischeNutzleistung", ascending=False).reset_index(drop=True)
     return df
